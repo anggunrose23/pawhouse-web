@@ -1,7 +1,7 @@
 import { supabase } from "./supabase.js";
 
-// Menangani submit form
-document.getElementById("adoptForm").addEventListener("submit", async function(e) {
+
+document.querySelector(".adopt-form").addEventListener("submit", async function(e) {
     e.preventDefault();
 
     // Ambil semua data form
@@ -16,16 +16,18 @@ document.getElementById("adoptForm").addEventListener("submit", async function(e
         agreement: document.getElementById("agreement").checked
     };
 
+    // Pastikan Anda juga memiliki 'event' yang didefinisikan 
+    // di form submission, atau ganti event.target.reset() menjadi e.target.reset()
     const { error } = await supabase.from("adoption").insert([data]);
 
     if (error) {
-        alert("❌ Gagal menyimpan ke database Supabase!");
+        showNotification("❌ Gagal menyimpan ke database Supabase!");
         console.error(error);
         return;
     }
 
-    alert("✔ Berhasil tersimpan ke Supabase!");
-    event.target.reset();
+    showNotification("✔ Berhasil tersimpan ke Supabase!");
+    e.target.reset(); // Menggunakan e.target untuk mereset form
 });
 
 
