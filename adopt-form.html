@@ -7,72 +7,6 @@
     <link rel="stylesheet" href="adopt-form.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-    ...
-    </footer>
-</div>
-
-<script>
-document.querySelector(".adopt-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const nama = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const telepon = document.getElementById("phone").value;
-    const alamat = document.getElementById("residence").value;
-    const alasan = document.getElementById("experience").value;
-
-    let submissions = JSON.parse(localStorage.getItem("adoption_submissions")) || [];
-
-    submissions.push({
-        nama: nama,
-        email: email,
-        telepon: telepon,
-        alamat: alamat,
-        alasan: alasan
-    });
-
-    localStorage.setItem("adoption_submissions", JSON.stringify(submissions));
-
-    alert("Form adopsi berhasil dikirim!");
-    document.querySelector(".adopt-form").reset();
-});
-</script>
-<script>
-document.querySelector(".adopt-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Mencegah reload halaman
-
-    // Ambil value dari form
-    const newData = {
-        nama: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        telepon: document.getElementById("phone").value,
-        alamat: document.getElementById("residence").value + 
-                " | Landlord: " + document.getElementById("landlord").value,
-        alasan: document.getElementById("experience").value
-    };
-
-    // Ambil data lama
-    let stored = JSON.parse(localStorage.getItem("adoption_submissions")) || [];
-
-    // Tambahkan data baru
-    stored.push(newData);
-
-    // Simpan kembali
-    localStorage.setItem("adoption_submissions", JSON.stringify(stored));
-
-    // Notifikasi sukses
-    alert("Form berhasil dikirim! Data adopsi telah disimpan.");
-
-    // Kosongkan form
-    event.target.reset();
-});
-</script>
-
-<script type="module" src="adoptForm.js"></script>
-
-</body>
-</html>
-
 <body>
 
     <div class="adoption-page-wrapper">
@@ -148,6 +82,6 @@ document.querySelector(".adopt-form").addEventListener("submit", function(event)
             <p>&copy; 2025 PawHouse. All rights reserved.</p>
         </footer>
     </div>
-
+<script type="module" src="adoptForm.js"></script>
 </body>
 </html>
